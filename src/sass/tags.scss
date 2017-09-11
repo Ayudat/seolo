@@ -1,0 +1,48 @@
+#seolo-tags {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999998;
+    background: #fff;
+    font-size: 22px;
+    color: $color-base;
+    padding: 7px 12px 7px 7px;
+    cursor: pointer;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+    @include transition(256ms);
+    @include opacity(0.4);
+    &:hover { @include opacity(1); }
+}
+
+#seolo-tags-edit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+    display: none;
+    width: 100%;
+    padding: 10px;
+    background: #eee;
+
+    label {
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .badge {
+        font-weight: normal;
+        font-family: monospace;
+        background-color: #a8a8a8;
+    }
+
+    .alert {
+        padding: 0 10px;
+        height: 30px;
+        display: inline-block;
+        line-height: 27px;
+        margin-bottom: 0;
+        margin: 0 10px 0 0;
+    }
+}

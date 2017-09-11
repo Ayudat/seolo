@@ -1,0 +1,42 @@
+span.seolo-text {
+    @include transition(128ms);
+    &:hover {
+        cursor: pointer;
+        background-color: #eee !important;
+        color: $color-base !important;
+    }
+    &.editing {
+        background-color: #ffb !important;
+        color: $color-base !important;
+    }
+}
+
+#seolo-text {
+    width: 100%;
+    max-width: 50%;
+    @media (max-width: $screen-xs-max) { max-width: 100%; }
+
+    position:fixed;
+    bottom: 0;
+    padding: 10px;
+    background: #eee;
+    display: none;
+    left: 0;
+    &.right { right: 0; left: inherit; }
+
+    #text-id {
+        margin-left: 24px;
+        font-family: monospace;
+    }
+
+    textarea {
+        font-family: monospace;
+        resize: vertical;
+        max-height: 400px;
+        padding: 5px 8px;
+    }
+
+    #pos {
+        @media (max-width: $screen-xs-max) { display: none; }
+    }
+}

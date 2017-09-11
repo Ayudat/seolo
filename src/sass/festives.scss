@@ -1,0 +1,44 @@
+#seolo-festives {
+    position: fixed;
+    top: 0;
+    z-index: 999999998;
+    right: 0;
+    background: #fff;
+    font-size: 22px;
+    color: $color-base;
+    padding: 7px 7px 7px 9px;
+    cursor: pointer;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-left-radius: 5px;
+    @include transition(256ms);
+    @include opacity(0.4);
+    &:hover { @include opacity(1); }
+}
+
+#seolo-festives-edit {
+    position: fixed;
+    top: 0;
+    z-index: 999999999;
+    right: 0;
+    display: none;
+    width: 100%;
+    padding: 10px;
+    background: #eee;
+
+    textarea {
+        font-size: 13px;
+        font-family: monospace;
+        color: $color-base;
+        resize: vertical;
+    }
+
+    .alert {
+        padding: 0 10px;
+        height: 30px;
+        display: inline-block;
+        line-height: 27px;
+        margin-bottom: 0;
+        margin: 0 10px 0 0;
+    }
+}

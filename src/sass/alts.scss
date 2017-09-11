@@ -1,0 +1,27 @@
+img.seolo {
+    background-color: rgba(180, 240, 180, 0.5) !important;
+    cursor: pointer !important;
+}
+
+#seolo-alt {
+    #alt-id {
+        margin-left: 24px;
+        font-family: monospace;
+    }
+
+    input {
+        font-family: monospace;
+        resize: vertical;
+        max-height: 400px;
+        padding: 5px 8px;
+    }
+
+    .alert {
+        padding: 0 10px;
+        height: 30px;
+        display: inline-block;
+        line-height: 27px;
+        margin-bottom: 0;
+        margin: 0 10px 0 0;
+    }
+}

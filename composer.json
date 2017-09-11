@@ -1,0 +1,14 @@
+{
+    "name": "ayudat/seolo",
+    "description": "SEO utilities",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David BP",
+            "email": "davidbravo@ayudatpymes.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
