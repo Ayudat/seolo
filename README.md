@@ -18,7 +18,7 @@ mix.sass('resources/assets/sass/seolo.scss', 'public/css');
 
 ### Paso 3
 
-Publicar y compilar de nuevo para obtener los ficheros y el CSS de Seolo ***(esto comvieneconviene hacerlo cada vez que se haga un composer update, para asegurar los assets y demás)***:
+Publicar y compilar de nuevo para obtener los ficheros y el CSS de Seolo *(esto conviene hacerlo cada vez que se haga un composer update, para asegurar los assets y demás)*:
 ```sh
 $ php artisan vendor:publish --force --provider="Ayudat\Seolo\SeoloServiceProvider" && npm run dev
 ```
