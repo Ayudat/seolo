@@ -36,6 +36,13 @@ $ composer dump-autoload
 
 ### Assets y publicación
 
+En el **webpack.mix.js** añadimos, despúes de let mix = ...:
+```ssh
+mix.options({
+  processCssUrls: false // Do not process/optimize relative stylesheet url()'s, for asset_()
+});
+```
+
 Si no vamos a usar Vue, comentamos en **resources/assets/js/app.js** todo menos la línea: **require('./bootstrap')**.
 
 Quedaría, aproximadamente:
@@ -57,22 +64,14 @@ require('./bootstrap');
 
 Hacemos un **npm run dev** para generar los ficheros base CSS del proyecto, por si queremos usarlos en un backend o algo así.
 
-Una vez hecho, en el **webpack.mix.js**, podemos comentar las líneas de mix que haya, **para que no se compilen más y supongan una pérdida de tiempo en cada "npm run dev"**, y añadimos, despúes de let mix = ...:
-```sh
-mix.options({
-  processCssUrls: false // Do not process/optimize relative stylesheet url()'s, for asset_()
-});
-```
-
-Y al final:
-
-```sh
+Una vez hecho, en el **webpack.mix.js**, podemos comentar las líneas de mix que haya, **para que no se compilen más y supongan una pérdida de tiempo en cada "npm run dev"**, y añadimos al final:
+```ssh
 mix.sass('resources/assets/sass/seolo.scss', 'public/css');
 ```
 Seolo ya incluye el fichero _variables.scss y el bootstrap, después de esta línea del mix, podemos añadir los scss de nuestro proyecto.
 
 Ya podemos publicar y compilar, para obtener los ficheros y el CSS de Seolo *(esto conviene hacerlo cada vez que se haga un composer update, para asegurar los assets y demás)*:
-```sh
+```ssh
 $ php artisan vendor:publish --force --provider="Ayudat\Seolo\SeoloServiceProvider" && npm run dev
 ```
 
@@ -101,7 +100,7 @@ $ php artisan make:auth
 
 Una vez hecho esto, crea un seed para poblar la tabla de usuarios con al menos uno, de tal manera que se pueda hacer login.
 
-## Idioma
+### Idioma
 
 Los mensajes de Seolo vienen en inglés y español. Según el "locale" que se tenga definido en **config/app.php**
 
