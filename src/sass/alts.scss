@@ -28,3 +28,16 @@ img.seolo {
         margin: 0 10px 0 0;
     }
 }
+
+.tooltip.seolo-tooltip {
+    .tooltip-arrow {
+        border-bottom-color: #888;
+    }
+
+    .tooltip-inner {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 12px;
+        color: #fff;
+        background: #888;
+    }
+}

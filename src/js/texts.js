@@ -4,6 +4,12 @@ function seolo_theText()
 }
 
 $(document).ready(function() {
+    //if the text has an anchor as parent, disable it
+    $('span.seolo-text').each(function() {
+        var parent = $(this).parent();
+        if (parent.attr('href')) parent.attr('href', 'javascript:void(0)');
+    });
+
     $('span.seolo-text').click(function() {
         $('span.seolo-text').removeClass('editing');
         $('#seolo-text .panel-body').removeClass('has-error has-success');

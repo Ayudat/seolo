@@ -1,6 +1,6 @@
 # Seolo
 
-Utilidades SEO para proyectos Laravel 5.4 en adelante. Incluye: 
+Utilidades SEO para proyectos Laravel 5.4 en adelante. Incluye:
 - Editor de textos que se pinten usando el helper `t()`.
 - Editor de texto alternativo de las imágenes a las que se les ponga la clase CSS `seolo`.
 - Editor de etiquetas meta y title.
@@ -91,6 +91,8 @@ Posibilitar el sistema de autenticación, para que se activen los añadidos de S
 $ php artisan make:auth
 ```
 
+Una vez hecho esto, crea un seed para poblar la tabla de usuarios con al menos uno, de tal manera que se pueda hacer login.
+
 ## Idioma
 
 Los mensajes de Seolo vienen en inglés y español. Según el "locale" que se tenga definido en **config/app.php**
@@ -131,7 +133,7 @@ y ya luego:
 
 ### Anotaciones
 
-Cualquier texto llamado con `t()` y que no tenga key en los ficheros de traducciones, Seolo intentará encontrarlo en la base de datos, si lo encuentra y se está logado, se hará editable.
+Cualquier texto llamado con `t()` y que no tenga key en los ficheros de traducciones, Seolo intentará encontrarlo en la base de datos, si lo encuentra y se está logado, se hará editable. Si se usa t() con formato "blade", usa la forma: `{!! t('...') !!}`, para que el html que Seolo necesita se pinte correctamente.
 
 A cualquier imagen con esta estructura se le podrá editar el `alt`:
 ```ssh

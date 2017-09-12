@@ -10,7 +10,9 @@ function seolo_alt_tooltip(obj, show)
             obj.attr('title', ''+alt).tooltip('fixTitle');
             if (show) obj.tooltip('show');
         } else {
-            obj.data('toggle', 'tooltip').data('placement', 'bottom').attr('title', ''+alt).tooltip();
+            obj.data('toggle', 'tooltip').data('placement', 'bottom').attr('title', ''+alt).tooltip({
+				template: '<div class="tooltip seolo-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+			});
         }
     }
 }
