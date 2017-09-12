@@ -57,7 +57,15 @@ require('./bootstrap');
 
 Hacemos un **npm run dev** para generar los ficheros base CSS del proyecto, por si queremos usarlos en un backend o algo así.
 
-Una vez hecho, en el **webpack.mix.js**, podemos comentar las líneas de mix que haya, **para que no se compilen más y supongan una pérdida de tiempo en cada "npm run dev"**, y añadimos:
+Una vez hecho, en el **webpack.mix.js**, podemos comentar las líneas de mix que haya, **para que no se compilen más y supongan una pérdida de tiempo en cada "npm run dev"**, y añadimos, despúes de let mix = ...:
+```sh
+mix.options({
+  processCssUrls: false // Do not process/optimize relative stylesheet url()'s, for asset_()
+});
+```
+
+Y al final:
+
 ```sh
 mix.sass('resources/assets/sass/seolo.scss', 'public/css');
 ```

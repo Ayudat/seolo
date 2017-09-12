@@ -11,7 +11,7 @@ function asset_($asset)
     } else {
         $path = public_path();
     }
-    return asset($asset) .'?_=' . filemtime($path.'/'.$asset);
+    return asset($asset) . '?_=' . @filemtime($path.'/'.$asset);
 }
 
 /**
