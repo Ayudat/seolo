@@ -23,7 +23,7 @@ En el **composer.json** añadimos la línea `"Ayudat\\Seolo\\": "vendor/ayudat/s
     ],
     "psr-4": {
         "App\\": "app/",
-		"Ayudat\\Seolo\\": "vendor/ayudat/seolo/src"
+        "Ayudat\\Seolo\\": "vendor/ayudat/seolo/src"
     }
 },
 ```
@@ -133,10 +133,17 @@ y ya luego:
 
 ### Anotaciones
 
-Cualquier texto llamado con `t()` y que no tenga key en los ficheros de traducciones, Seolo intentará encontrarlo en la base de datos, si lo encuentra y se está logado, se hará editable. Si se usa t() con formato "blade", usa la forma: `{!! t('...') !!}`, para que el html que Seolo necesita se pinte correctamente.
+Cualquier texto llamado con `t()` y que no tenga key en los ficheros de traducciones, Seolo intentará encontrarlo en la tabla `seolo_texts` de base de datos, si lo encuentra y se está logado, se hará editable. Si se usa t() con formato "blade", usa la forma: `{!! t('...') !!}`, para que el html que Seolo necesita se pinte correctamente.
 
 A cualquier imagen con esta estructura se le podrá editar el `alt`:
 ```ssh
 <img src="{{ asset_('images/test.png') }}" alt="{{ alt('test') }}" class="seolo" data-seolokey="test"/>
 ```
-Donde "alt.test" sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.
+Donde `seolo-alt.test` sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.
+
+La forma que adoptan los textos de las tags es, por ejemplo para la ruta "index":
+`seolo-tag.index.tab`, usado en el <title>
+`seolo-tag.index.title`, usado en el meta 'og:title'
+`seolo-tag.index.description`, usado en el meta 'description' y en el 'og:description'
+
+En `seolo-festives` se guardará el texto de días festivos.
