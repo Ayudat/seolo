@@ -3,11 +3,11 @@ span.seolo-text {
     &:hover {
         cursor: pointer;
         background-color: #eee !important;
-        color: $color-base !important;
+        color: #ccc !important;
     }
     &.editing {
         background-color: #ffb !important;
-        color: $color-base !important;
+        color: #ccc !important;
     }
 }
 
@@ -36,6 +36,7 @@ span.seolo-text {
         resize: vertical;
         max-height: 400px;
         padding: 5px 8px;
+		color: #ccc;
     }
 
     #pos {

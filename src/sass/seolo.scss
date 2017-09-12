@@ -1,8 +1,16 @@
-@import "variables";
+@mixin transition($transition) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
 
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-$color-base: #ccc;
+@mixin opacity($value) {
+  $IEValue: $value*100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
+}
 
 @import "seolo/festives";
 @import "seolo/tags";
