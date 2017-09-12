@@ -99,7 +99,7 @@ Los mensajes de Seolo vienen en inglés y español. Según el "locale" que se te
 
 ### Modificaciones en el  layout
 
-En el <head> del layout del proyecto, sustituir <tiltle>...</title> por lo siguiente *(ojo con el og:image, es para cuando la web se comparte en Facebook, se ha de crear la imagen de 300x300, o quitar esa línea)*:
+En el <head> del layout del proyecto, sustituir la etiqueta `title` por lo siguiente *(ojo con el og:image, es para cuando la web se comparte en Facebook, se ha de crear la imagen de 300x300, o quitar esa línea)*:
 ```ssh
 <?php $routeName = Illuminate\Support\Facades\Route::current()->getName(); ?>
 <title>{{ tag($routeName, 'tab', config('app.name')) }}</title>
@@ -142,9 +142,9 @@ A cualquier imagen con esta estructura se le podrá editar el `alt`:
 Donde `seolo-alt.test` sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.
 
 La forma que adoptan los textos de las tags es, por ejemplo para la ruta "index":
-`seolo-tag.index.tab`, usado en el <title>
-`seolo-tag.index.title`, usado en el meta 'og:title'
-`seolo-tag.index.description`, usado en el meta 'description' y en el 'og:description'
+`seolo-tag.index.tab`, para la etiqueta 'title'
+`seolo-tag.index.title`, para el meta 'og:title'
+`seolo-tag.index.description`, para el meta 'description' y en el 'og:description'
 
 En `seolo-festives` se guardará el texto de días festivos.
 
@@ -159,10 +159,10 @@ Devuelve la ruta a un asset (imagen, js, css), añadiéndole `?_=time al final`,
 Funciona igual que 'trans_choice', pero si no encuentra la $key en los ficheros de traducción del proyecto, busca en la tabla seolo_texts, si está ahí, muestra el texto, y si se está logado, además permite editarlo.
 
 `tag($routeName, $key, $default = '')`
-Devuelve el dato tag de una ruta que tenga 'name' (por ejemplo 'index'), $key puede valer [tab|title|description], normalmente es usada por Seolo en el bloque que se incluye en el <head> de un layout (visto en una sección anterior de este mismo documento).
+Devuelve el dato tag de una ruta que tenga 'name' (por ejemplo 'index'), $key puede valer [tab|title|description], normalmente es usada por Seolo en el bloque que se incluye en el `head` de un layout (visto en una sección anterior de este mismo documento).
 
 `alt($key, $default = '')`
-Devuelve el texto alternativo de una imagen (visto su uso en una <img> de ejemplo en una sección anterior de este mismo documento).
+Devuelve el texto alternativo de una imagen (visto su uso en una etiqueta `img` de ejemplo en una sección anterior de este mismo documento).
 
 `inSchedule()`
 Devuelve verdadero si se está en horario laboral, falso si se está fuera de horario o en un día festivo.
