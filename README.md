@@ -1,32 +1,105 @@
 # Seolo
 
-Utilidades SEO para proyectos Laravel 5.4 en adelante.
+Utilidades SEO para proyectos Laravel 5.4 en adelante. Incluye: 
+- Editor de textos que se pinten usando el helper `t()`.
+- Editor de texto alternativo de las imágenes a las que se les ponga la clase CSS `seolo`.
+- Editor de etiquetas meta y title.
+- Editor de días festivos.
 
-### Paso 1
+### Añadir Seolo al proyecto
 
-Comentar en **resources/assets/js/app.js** todo menos la línea: **require('./bootstrap')** y compilar:
-```sh
-$ npm run dev
+Insertar la siguente línea en la sección **require** del **composer.json** del proyecto:
+```ssh
+"ayudat/seolo": "master-dev"
+```
+Hacer un **composer update** y un **npm install**.
+
+En el **composer.json** añadimos la línea `"Ayudat\\Seolo\\": "vendor/ayudat/seolo/src"`
+```ssh
+"autoload": {
+    "classmap": [
+        "database/seeds",
+        "database/factories"
+    ],
+    "psr-4": {
+        "App\\": "app/",
+		"Ayudat\\Seolo\\": "vendor/ayudat/seolo/src"
+    }
+},
+```
+En **config/app.php** añadimos el service provider: `Ayudat\Seolo\SeoloServiceProvider::class`
+
+Ejecutamos:
+```ssh
+$ composer dump-autoload
 ```
 
-### Paso 2
+### Assets y publicación
 
-En **webpack.mix.js**, comentar las líneas de mix que haya (para que no se compilen más), añadir:
+Si no vamos a usar Vue, comentamos en **resources/assets/js/app.js** todo menos la línea: **require('./bootstrap')**.
+
+Quedaría, aproximadamente:
+```ssh
+...
+
+require('./bootstrap');
+
+//window.Vue = require('vue');
+
+...
+
+//Vue.component('example', require('./components/Example.vue'));
+
+//const app = new Vue({
+//    el: '#app'
+//});
+```
+
+Hacemos un **npm run dev** para generar los ficheros base CSS del proyecto, por si queremos usarlos en un backend o algo así.
+
+Una vez hecho, en el **webpack.mix.js**, podemos comentar las líneas de mix que haya, **para que no se compilen más y supongan una pérdida de tiempo en cada "npm run dev"**, y añadimos:
 ```sh
 mix.sass('resources/assets/sass/seolo.scss', 'public/css');
 ```
+Seolo ya incluye el fichero _variables.scss y el bootstrap, después de esta línea del mix, podemos añadir los scss de nuestro proyecto.
 
-### Paso 3
-
-Publicar y compilar de nuevo para obtener los ficheros y el CSS de Seolo *(esto conviene hacerlo cada vez que se haga un composer update, para asegurar los assets y demás)*:
+Ya podemos publicar y compilar, para obtener los ficheros y el CSS de Seolo *(esto conviene hacerlo cada vez que se haga un composer update, para asegurar los assets y demás)*:
 ```sh
 $ php artisan vendor:publish --force --provider="Ayudat\Seolo\SeoloServiceProvider" && npm run dev
 ```
 
-### Paso 4
+### Rutas
 
-En el head del layout, sustituir <tiltle>...</title> por lo siguiente *(ojo con el og:image, es para cuando la web se comparte en Facebook, se ha de crear la imagen de 300x300, o quitar esa línea)*:
+En routes/web.php, nombrar la ruta index **ya que el sistema de tags lo necesita**, ojo: **todas las rutas han de tener un "name" al que se asociarán sus datos SEO**.
 ```ssh
+Route::get('/', function () {
+    return view('welcome');
+})->name('index');
+```
+
+### Migraciones
+
+Tras **configurar la base de datos en el .env**, ejecutamos las migraciones, que crearán la tabla "seolo_texts":
+```ssh
+$ php artisan migrate:refresh --seed
+```
+
+### Autenticación
+
+Posibilitar el sistema de autenticación, para que se activen los añadidos de Seolo se necesita un usuario autenticado, en principio cualquiera, para más profundidad en permisos o usuarios que pueden "ver" Seolo, tendrás que modificarlo ;)
+```ssh
+$ php artisan make:auth
+```
+
+## Idioma
+
+Los mensajes de Seolo vienen en inglés y español. Según el "locale" que se tenga definido en **config/app.php**
+
+### Modificaciones en el  layout
+
+En el <head> del layout del proyecto, sustituir <tiltle>...</title> por lo siguiente *(ojo con el og:image, es para cuando la web se comparte en Facebook, se ha de crear la imagen de 300x300, o quitar esa línea)*:
+```ssh
+<?php $routeName = Illuminate\Support\Facades\Route::current()->getName(); ?>
 <title>{{ tag($routeName, 'tab', config('app.name')) }}</title>
 <meta property="og:title" content="{{ tag($routeName, 'title') }}"/>
 <meta property="og:type" content="website" />
@@ -37,16 +110,15 @@ En el head del layout, sustituir <tiltle>...</title> por lo siguiente *(ojo con 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 ```
 
-### Paso 5
+Antes del </body>:
 
-En routes/web.php, nombrar la ruta index (para los tags), con al menos (todas las rutas han de tener un "name" al que se asociarán sus datos SEO):
+Quizás aquí, tendrás que añadir el javascript del proyecto, que deberá incluir **jQuery**:
 ```ssh
-Route::get('/', function () { return view('seolo'); })->name('index');
+<script src="{{ asset_('js/app.js') }}"></script>
 ```
 
-### Paso 6
+y ya luego:
 
-El el layout antes del </body>:
 ```ssh
 @if (Illuminate\Support\Facades\Auth::user())
     <link href="{{ asset_('css/seolo.css') }}" rel="stylesheet" type="text/css">
@@ -65,4 +137,4 @@ A cualquier imagen con esta estructura se le podrá editar el `alt`:
 ```ssh
 <img src="{{ asset_('images/test.png') }}" alt="{{ alt('test') }}" class="seolo" data-seolokey="test"/>
 ```
-Donde "test" sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.
+Donde "alt.test" sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.

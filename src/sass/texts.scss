@@ -12,6 +12,8 @@ span.seolo-text {
 }
 
 #seolo-text {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
     width: 100%;
     max-width: 50%;
     @media (max-width: $screen-xs-max) { max-width: 100%; }
