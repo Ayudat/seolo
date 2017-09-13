@@ -60,11 +60,12 @@ function alt($key, $default = '')
 
 function inSchedule()
 {
-    $file = resource_path('festives.txt');
-    if (!file_exists($file)) abort(404, 'resources/festives.txt');
+    $festives = '';
+    $text = SeoloText::where('key', 'seolo-festives')->get();
+    if (isset($text[0])) $festives = $text[0]->content;
 
     $workDate = true;
-    foreach (explode(PHP_EOL, file_get_contents($file)) as $ln)
+    foreach (explode(PHP_EOL, $festives) as $ln)
     {
         $ln = trim($ln);
         if ($ln)

@@ -172,4 +172,4 @@ Devuelve el dato tag de una ruta que tenga 'name' (por ejemplo 'index'), $key pu
 Devuelve el texto alternativo de una imagen (visto su uso en una etiqueta `img` de ejemplo en una sección anterior de este mismo documento).
 
 `inSchedule()`
-Devuelve verdadero si se está en horario laboral, falso si se está fuera de horario o en un día festivo.
+Devuelve verdadero si se está en horario laboral, falso si se está fuera de horario o en un día festivo. **Importante:** recuerda poner el timezone a "Europe/Madrid" en **config/app.php**
