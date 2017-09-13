@@ -6,8 +6,8 @@ function seolo_theText()
 $(document).ready(function() {
     //if the text has an anchor as parent, disable it
     $('span.seolo-text').each(function() {
-        var parent = $(this).parent();
-        if (parent.attr('href')) parent.attr('href', 'javascript:void(0)');
+        var a = $(this).closest('a');
+        if (a.attr('href')) a.attr('href', 'javascript:void(0)');
     });
 
     $('span.seolo-text').click(function() {

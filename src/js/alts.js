@@ -20,8 +20,8 @@ function seolo_alt_tooltip(obj, show)
 $(document).ready(function() {
     $('img.seolo').each(function() {
         //if the img has an anchor as parent, disable it
-        var parent = $(this).parent();
-        if (parent.attr('href')) parent.attr('href', 'javascript:void(0)');
+        var a = $(this).closest('a');
+        if (a.attr('href')) a.attr('href', 'javascript:void(0)');
 
         seolo_alt_tooltip($(this), false);
 
