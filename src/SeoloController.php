@@ -33,6 +33,7 @@ class SeoloController extends Controller
     {
         // check html
         $request['content'] = trim($request['content']);
+        $request['content'] = str_replace('<br>', '<br/>', $request['content']);
         $string = "<div>{$request['content']}</div>";
         libxml_use_internal_errors(true);
         libxml_clear_errors();
