@@ -146,7 +146,7 @@ A cualquier imagen con esta estructura se le podrá editar el `alt`:
 ```ssh
 <img src="{{ asset_('images/test.png') }}" alt="{{ alt('test') }}" class="seolo" data-seolokey="test"/>
 ```
-Donde `seolo-alt.test` sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene.
+Donde `seolo-alt.test` sería la key de esa imagen en la base de datos de Seolo, si la imagen tiene un ancla alrededor, su href se anulará para permitir la edición del alt de la imagen que contiene. Se pueden guardar textos alternativos vacíos, por si no se quiere utilizar el *alt* en alguna imagen.
 
 La forma que adoptan los textos de las tags es, por ejemplo para la ruta "index":
 `seolo-tag.index.tab`, para la etiqueta 'title'

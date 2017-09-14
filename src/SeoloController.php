@@ -13,19 +13,18 @@ class SeoloController extends Controller
     public function saveAlt(Request $request)
     {
         $request['content'] = trim(strip_tags($request['content']));
-        if (strlen($request['content']))
+
+        //save or update
+        $theKey = 'seolo-alt.' . $request['key'];
+        $text = SeoloText::where('key', $theKey)->get();
+        if (!isset($text[0]))
         {
-            //save or update
-            $theKey = 'seolo-alt.' . $request['key'];
-            $text = SeoloText::where('key', $theKey)->get();
-            if (!isset($text[0]))
-            {
-                $text[0] = new SeoloText;
-                $text[0]->key = $theKey;
-            }
-            $text[0]->content = $request['content'];
-            $text[0]->save();
+            $text[0] = new SeoloText;
+            $text[0]->key = $theKey;
         }
+        $text[0]->content = $request['content'];
+        $text[0]->save();
+
         echo $request['content'];
     }
 
