@@ -90,6 +90,16 @@ Tras **configurar la base de datos en el .env**, ejecutamos las migraciones, que
 ```ssh
 $ php artisan migrate:refresh --seed
 ```
+En el caso de que suceda un error que contenga algo parecido a **"specified key was too long error"**, edita tu **AppServiceProvider.php** y añade:
+```ssh
+use Illuminate\Support\Facades\Schema;
+
+public function boot()
+{
+    Schema::defaultStringLength(191);
+}
+```
+Y luego intenta ejecutar el *artisan* de nuevo.
 
 ### Autenticación
 
@@ -98,7 +108,7 @@ Posibilitar el sistema de autenticación, para que se activen los añadidos de S
 $ php artisan make:auth
 ```
 
-Una vez hecho esto, crea un seed para poblar la tabla de usuarios con al menos uno, de tal manera que se pueda hacer login.
+Una vez hecho esto, **necesitas tener al menos un usuario en la base de datos**, crea un seed para poblar la tabla de usuarios con al menos uno, de tal manera que se pueda hacer login, en el manual de Laravel viene cómo hacerlo, en **Database > Seeding**.
 
 ### Idioma
 
